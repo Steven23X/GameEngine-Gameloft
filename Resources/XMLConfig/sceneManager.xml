@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sceneManager>
+	<!--Window Resource-->
+	<gameName>Game Engine</gameName>
+
+	<defaultScreenSize>
+		<width>960</width>
+		<height>720</height>
+	</defaultScreenSize>
+
+	<backgroundColor>
+		<r>0.0</r>
+		<g>0.0</g>
+		<b>0.0</b>
+	</backgroundColor>
+
+	<!--Controls-->
+	<controls>
+		<control>
+			<key>W</key>
+			<action>MOVE_CAMERA_NEGATIVE_Z</action>
+		</control>
+		<control>
+			<key>S</key>
+			<action>MOVE_CAMERA_POSITIVE_Z</action>
+		</control>
+		<control>
+			<key>A</key>
+			<action>MOVE_CAMERA_NEGATIVE_X</action>
+		</control>
+		<control>
+			<key>D</key>
+			<action>MOVE_CAMERA_POSITIVE_X</action>
+		</control>
+		<control>
+			<key>Q</key>
+			<action>MOVE_CAMERA_POSITIVE_Y</action>
+		</control>
+		<control>
+			<key>E</key>
+			<action>MOVE_CAMERA_NEGATIVE_Y</action>
+		</control>
+	</controls>
+
+
+	<cameras>
+		<camera id="1">
+			<type>none</type>
+			<position>
+				<x>0</x>
+				<y>0</y>
+				<z>1</z>
+			</position>
+			<target>
+				<x>0</x>
+				<y>0</y>
+				<z>-1</z>
+			</target>
+			<up>
+				<x>0</x>
+				<y>1</y>
+				<z>0</z>
+			</up>
+			<translationSpeed>10</translationSpeed>
+			<rotationSpeed>0.3</rotationSpeed>
+			<fov>45</fov>
+			<near>0.1</near>
+			<far>10000</far>
+		</camera>
+		<camera id="2">
+			<type>none</type>
+			<position>
+				<x>0</x>
+				<y>0</y>
+				<z>500</z>
+			</position>
+			<target>
+				<x>0</x>
+				<y>0</y>
+				<z>-1</z>
+			</target>
+			<up>
+				<x>0</x>
+				<y>1</y>
+				<z>0</z>
+			</up>
+			<translationSpeed>10</translationSpeed>
+			<rotationSpeed>0.3</rotationSpeed>
+			<fov>45</fov>
+			<near>0.1</near>
+			<far>10000</far>
+		</camera>
+	</cameras>
+	<activeCamera>2</activeCamera>
+
+
+	<objects>
+		<object id="1">
+			<model>1</model>
+			<shader>1</shader>
+			<type>normal</type>
+			<name>Crocodil_verde</name>
+			<textures>
+				<texture id="1" />
+			</textures>
+			<position>
+				<x>20.5</x>
+				<y>27</y>
+				<z>21.22</z>
+			</position>
+			<rotation>
+				<x>0.5</x>
+				<y>1.4</y>
+				<z>1</z>
+			</rotation>
+			<scale>
+				<x>1.0</x>
+				<y>1.0</y>
+				<z>1.0</z>
+			</scale>
+			<!--
+			Exemple de alte configurari care vor fi adaugate si parsate mai tarziu (pentru taskuri ulterioare)
+			<followingCamera>
+				<cameras>
+					<camera>1</camera>
+				</cameras>
+				<ox/>
+				<oy/>
+				<oz/>
+			</followingCamera>
+			<trajectory type="linear" iteration="infinite" direction="alternate">
+				<comment>startPoint e chiar Pos</comment>
+				<endPoint>
+					<x>0.5</x>
+					<y>100.0</y>
+					<z>1.0</z>				
+				</endPoint>
+				<speed>0.1</speed>
+			</trajectory>
+			<lights>
+				<light>1</light>
+			</lights>
+			-->
+		</object>
+		<object id="2">
+			<model>2</model>
+			<shader>2</shader>
+			<type>normal</type>
+			<wired />
+			<name>Mesh_minge</name>
+			<color>
+				<r>1.0</r>
+				<g>0.5</g>
+				<b>0.0</b>
+			</color>
+			<position>
+				<x>500</x>
+				<y>1.4</y>
+				<z>20</z>
+			</position>
+			<rotation>
+				<x>0</x>
+				<y>0</y>
+				<z>0</z>
+			</rotation>
+			<scale>
+				<x>1.0</x>
+				<y>1.0</y>
+				<z>1.0</z>
+			</scale>
+			<!--
+			Exemple de alte configurari care vor fi adaugate si parsate mai tarziu (pentru taskuri ulterioare)
+			<followingCamera>
+				<cameras>
+					<camera>1</camera>
+				</cameras>
+				<ox/>
+				<oy/>
+				<oz/>
+			</followingCamera>
+			<trajectory type="linear" iteration="infinite" direction="alternate">
+				<comment>startPoint e chiar Pos</comment>
+				<endPoint>
+					<x>0.5</x>
+					<y>100.0</y>
+					<z>1.0</z>				
+				</endPoint>
+				<speed>0.1</speed>
+			</trajectory>
+			<lights>
+				<light>1</light>
+			</lights>
+			-->
+
+		</object>
+		<object id="3">
+			<model>generated</model>
+			<shader>2</shader>
+			<type>terrain</type>
+			<name>Teren</name>
+			<textures>
+				<texture id="2" />
+				<texture id="3" />
+				<texture id="4" />
+				<texture id="5" />
+			</textures>
+			<color>
+				<r>1.0</r>
+				<g>0.0</g>
+				<b>0.0</b>
+			</color>
+			<heights>
+				<r>-400</r>
+				<g>-200</g>
+				<b>100</b>
+			</heights>
+			<cellNumber>80</cellNumber>
+			<dimCell>200</dimCell>
+			<offsetY>-100</offsetY>
+			<position>
+				<x>1.5</x>
+				<y>2.4</y>
+				<z>7</z>
+			</position>
+			<rotation>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</rotation>
+			<scale>
+				<x>1.0</x>
+				<y>1.0</y>
+				<z>1.0</z>
+			</scale>
+		</object>
+	</objects>
+
+	<!--
+	<ambientalLight>
+		<color>
+			<r>1.0</r>
+			<g>1.0</g>
+			<b>1.0</b>
+		</color>
+		<ratio>0.2</ratio>
+	</ambientalLight>
+	
+	<lights>
+		<light id="1">
+			<associatedObject>2</associatedObject>
+			<diffuseColor>
+				<r>1.0</r>
+				<g>1.0</g>
+				<b>1.0</b>
+			</diffuseColor>
+			<specularColor>
+				<r>1.0</r>
+				<g>1.0</g>
+				<b>1.0</b>
+			</specularColor>
+			<type>point</type>
+		</light>
+	</lights>
+	-->
+	<debugSettings>
+		<objectAxes>
+			<OXColor>
+				<r>1.0</r>
+				<g>0.0</g>
+				<b>0.0</b>
+			</OXColor>
+			<OYColor>
+				<r>0.0</r>
+				<g>1.0</g>
+				<b>0.0</b>
+			</OYColor>
+			<OZColor>
+				<r>0.0</r>
+				<g>0.0</g>
+				<b>1.0</b>
+			</OZColor>
+		</objectAxes>
+		<camAxes>
+			<OXColor>
+				<r>1.0</r>
+				<g>1.0</g>
+				<b>0.0</b>
+			</OXColor>
+			<OYColor>
+				<r>0.0</r>
+				<g>1.0</g>
+				<b>1.0</b>
+			</OYColor>
+			<OZColor>
+				<r>1.0</r>
+				<g>0.0</g>
+				<b>1.0</b>
+			</OZColor>
+		</camAxes>
+	</debugSettings>
+
+</sceneManager>

@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Win32Res">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{64c93967-d0cf-4a43-ad42-2c66dc66c5b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\Shaders">
+      <UniqueIdentifier>{579c080a-717e-429b-8b01-ae9eccb5ad2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\XMLConfig">
+      <UniqueIdentifier>{f3077188-b0a6-49aa-9163-99ecd939652c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ResourceManager">
+      <UniqueIdentifier>{59b00201-6ef2-4e77-a901-a3b8a8cc234a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ResourceManager">
+      <UniqueIdentifier>{cabd0a0d-d2de-4b38-a183-1d5253a46bfc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\Models">
+      <UniqueIdentifier>{c6d727df-7629-4b6f-ab85-eb64cb5f2fbb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\Textures">
+      <UniqueIdentifier>{54e30d61-53f1-4f4d-8ce2-1820fd785bb3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\SceneManager">
+      <UniqueIdentifier>{9d5f9711-d9a5-4f66-a157-9e46eda7fe56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SceneManager">
+      <UniqueIdentifier>{89784021-2380-4e58-acd7-087f0420fa4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ResourceManager\Resources">
+      <UniqueIdentifier>{75702b3d-9221-49e1-b2c7-04f78580e1a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ResourceManager\MTS">
+      <UniqueIdentifier>{07dffb88-43ed-4e52-9ce1-26e1aaab6333}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ResourceManager\MTS">
+      <UniqueIdentifier>{2ab7d3b8-430b-48b6-a6a9-6b0a03c9e957}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\SceneManager\Resources">
+      <UniqueIdentifier>{660df246-df9b-4edc-afc8-b5a0f932b3eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\SceneManager\Objects">
+      <UniqueIdentifier>{024104f4-e6d0-4bd1-ae5c-1f97774e4ff8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SceneManager\Objects">
+      <UniqueIdentifier>{c2865558-099e-4f7f-9753-f1bcb0efedee}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="NewTrainingFramework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager.cpp">
+      <Filter>Source Files\ResourceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>Source Files\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>Source Files\ResourceManager\MTS</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Source Files\ResourceManager\MTS</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Source Files\ResourceManager\MTS</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Source Files\SceneManager\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneObject.cpp">
+      <Filter>Source Files\SceneManager\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Terrain.cpp">
+      <Filter>Source Files\SceneManager\Objects</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>Header Files\ResourceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>Header Files\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelResource.h">
+      <Filter>Header Files\ResourceManager\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderResource.h">
+      <Filter>Header Files\ResourceManager\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureResource.h">
+      <Filter>Header Files\ResourceManager\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Header Files\ResourceManager\MTS</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Header Files\ResourceManager\MTS</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Header Files\ResourceManager\MTS</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraResource.h">
+      <Filter>Header Files\SceneManager\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="ControlResource.h">
+      <Filter>Header Files\SceneManager\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectResource.h">
+      <Filter>Header Files\SceneManager\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowResource.h">
+      <Filter>Header Files\SceneManager\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Header Files\SceneManager\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneObject.h">
+      <Filter>Header Files\SceneManager\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Globals.h">
+      <Filter>Header Files\SceneManager\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Vertex.h">
+      <Filter>Header Files\SceneManager\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Terrain.h">
+      <Filter>Header Files\SceneManager\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="TerrainResource.h">
+      <Filter>Header Files\SceneManager\Resources</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Resources\Shaders\modelShader.fs">
+      <Filter>Resources\Shaders</Filter>
+    </None>
+    <None Include="..\Resources\Shaders\modelShader.vs">
+      <Filter>Resources\Shaders</Filter>
+    </None>
+    <None Include="..\Resources\Shaders\terrainShader.fs">
+      <Filter>Resources\Shaders</Filter>
+    </None>
+    <None Include="..\Resources\Shaders\terrainShader.vs">
+      <Filter>Resources\Shaders</Filter>
+    </None>
+    <None Include="..\Resources\Shaders\modelShaderWired.fs">
+      <Filter>Resources\Shaders</Filter>
+    </None>
+    <None Include="..\Resources\Models\Bila.nfg">
+      <Filter>Resources\Models</Filter>
+    </None>
+    <None Include="..\Resources\Models\Croco.nfg">
+      <Filter>Resources\Models</Filter>
+    </None>
+    <None Include="..\Resources\Models\Terrain.nfg">
+      <Filter>Resources\Models</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="..\Resources\XML Config\resourceManager.xml">
+      <Filter>Resources\XMLConfig</Filter>
+    </Xml>
+    <Xml Include="..\Resources\XMLConfig\sceneManager.xml">
+      <Filter>Resources\XMLConfig</Filter>
+    </Xml>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Resources\Textures\Bus.tga">
+      <Filter>Resources\Textures</Filter>
+    </Image>
+    <Image Include="..\Resources\Textures\Croco.tga">
+      <Filter>Resources\Textures</Filter>
+    </Image>
+    <Image Include="..\Resources\Textures\Dirt.tga">
+      <Filter>Resources\Textures</Filter>
+    </Image>
+    <Image Include="..\Resources\Textures\Grass.tga">
+      <Filter>Resources\Textures</Filter>
+    </Image>
+    <Image Include="..\Resources\Textures\Rock.tga">
+      <Filter>Resources\Textures</Filter>
+    </Image>
+    <Image Include="..\Resources\Textures\TerrainBlendMap.tga">
+      <Filter>Resources\Textures</Filter>
+    </Image>
+  </ItemGroup>
+</Project>

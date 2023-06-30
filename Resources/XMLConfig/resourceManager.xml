@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resourceManager>
+	<models>
+		<folder path="../Resources/Models/">
+			<model id="1">
+				<file>Croco.nfg</file>
+			</model>
+			<model id="2">
+				<file>Bila.nfg</file>
+			</model>
+			<model id="3">
+				<file>Terrain.nfg</file>
+			</model>
+		</folder>
+	</models>
+	<shaders>
+		<folder path="../Resources/Shaders/">
+			<shader id="1">
+				<vs>modelShader.vs</vs>
+				<fs>modelShader.fs</fs>
+			</shader>
+			<shader id="2">
+				<vs>modelShader.vs</vs>
+				<fs>modelShaderWired.fs</fs>
+			</shader>
+			<shader id="3">
+				<vs>terrainShader.vs</vs>
+				<fs>terrainShader.fs</fs>
+			</shader>
+		</folder>
+
+	</shaders>
+	<textures>
+		<folder path="../Resources/Textures/">
+			<texture id="1" type="2d">
+				<file>Croco.tga</file>
+				<min_filter>LINEAR</min_filter>
+				<mag_filter>LINEAR</mag_filter>
+				<wrap_s>CLAMP_TO_EDGE</wrap_s>
+				<wrap_t>CLAMP_TO_EDGE</wrap_t>
+			</texture>
+			<texture id="2" type="2d">
+				<file>Dirt.tga</file>
+				<min_filter>LINEAR</min_filter>
+				<mag_filter>LINEAR</mag_filter>
+				<wrap_s>REPEAT</wrap_s>
+				<wrap_t>REPEAT</wrap_t>
+			</texture>
+			<texture id="3" type="2d">
+				<file>Rock.tga</file>
+				<min_filter>LINEAR</min_filter>
+				<mag_filter>LINEAR</mag_filter>
+				<wrap_s>REPEAT</wrap_s>
+				<wrap_t>REPEAT</wrap_t>
+			</texture>
+			<texture id="4" type="2d">
+				<file>Grass.tga</file>
+				<min_filter>LINEAR</min_filter>
+				<mag_filter>LINEAR</mag_filter>
+				<wrap_s>REPEAT</wrap_s>
+				<wrap_t>REPEAT</wrap_t>
+			</texture>
+			<texture id="5" type="2d">
+				<file>TerrainBlendMap.tga</file>
+				<min_filter>LINEAR</min_filter>
+				<mag_filter>LINEAR</mag_filter>
+				<wrap_s>REPEAT</wrap_s>
+				<wrap_t>REPEAT</wrap_t>
+			</texture>
+		</folder>
+	</textures>
+</resourceManager>
