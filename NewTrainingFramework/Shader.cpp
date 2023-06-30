@@ -10,7 +10,7 @@ Shader::Shader(ShaderResource* sr) : sId(0), vertexShader(0), fragmentShader(0),
 colorAttribute(0), uvAttribute(0),
 modelmatrixUniform(0),
 viewmatrixUniform(0),
-projectionmatrixUniform(0), textureUniform(0)
+projectionmatrixUniform(0), textureUniform()
 {
 	this->sr = sr;
 }
@@ -50,12 +50,20 @@ int Shader::Load()
 	//finding location of uniforms / attributes
 	positionAttribute = glGetAttribLocation(sId, "a_posL");
 	colorAttribute = glGetAttribLocation(sId, "a_color");
+
 	uvAttribute = glGetAttribLocation(sId, "a_uv");
+	uv2Attribute = glGetAttribLocation(sId, "a_uv2");
+
+	heightUniform = glGetUniformLocation(sId, "u_height");
 	modelmatrixUniform = glGetUniformLocation(sId, "u_modelmatrix");
 	viewmatrixUniform = glGetUniformLocation(sId, "u_viewmatrix");
 	projectionmatrixUniform = glGetUniformLocation(sId, "u_projectionmatrix");
-	textureUniform = glGetUniformLocation(sId, "u_textureuniform");
 
+	textureUniform[0] = glGetUniformLocation(sId, "u_textureuniform0");
+	textureUniform[1] = glGetUniformLocation(sId, "u_textureuniform1");
+	textureUniform[2] = glGetUniformLocation(sId, "u_textureuniform2");
+	textureUniform[3] = glGetUniformLocation(sId, "u_textureuniform3");
+	textureUniform[4] = glGetUniformLocation(sId, "u_textureuniform4");
 	return 0;
 }
 
@@ -110,7 +118,21 @@ GLint Shader::GetProjectionmatrixUniform() const
 	return projectionmatrixUniform;
 }
 
-GLint Shader::GetTextureUniform() const
+GLint Shader::GetUv2Attribute() const
 {
-	return textureUniform;
+	return uv2Attribute;
+}
+
+GLint Shader::GetHeightUniform() const
+{
+	return heightUniform;
+}
+
+GLint Shader::GetTextureUniform(int index) const
+{
+	if (index >= 0 && index < maxTextures)
+	{
+		return textureUniform[index];
+	}
+	return -1;
 }

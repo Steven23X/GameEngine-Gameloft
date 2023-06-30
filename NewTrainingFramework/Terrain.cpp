@@ -1,15 +1,16 @@
 #include "stdafx.h"
 #include "Terrain.h"
+#include "SceneManager.h"
 
 Terrain::Terrain(unsigned idSo, const Vector3& position, const Vector3& rotation, const Vector3& scale, Model* model,
-	Shader* shader, const std::vector<Texture*>& textures, bool depthTest, bool isWired, int nrCells, float dimCells,
-	float offsetY, Vector3 heights, Vector3 cameraPosition) : SceneObject(idSo, position, rotation, scale, model,
-	                                                                      shader, textures, depthTest, isWired),
-	                                                          nrCells(nrCells),
-	                                                          dimCells(dimCells),
-	                                                          offsetY(offsetY),
-	                                                          cameraPosition(cameraPosition),
-	                                                          heights(heights)
+                 Shader* shader, const std::vector<Texture*>& textures, bool depthTest, bool isWired, int nrCells, float dimCells,
+                 float offsetY, Vector3 heights, Vector3 cameraPosition) : SceneObject(idSo, position, rotation, scale, model,
+                                                                                       shader, textures, depthTest, isWired),
+                                                                           nrCells(nrCells),
+                                                                           dimCells(dimCells),
+                                                                           offsetY(offsetY),
+                                                                           cameraPosition(cameraPosition),
+                                                                           heights(heights)
 {
 	GenerateModel();
 }
@@ -18,6 +19,11 @@ Terrain::Terrain(unsigned idSo, const Vector3& position, const Vector3& rotation
 Terrain::~Terrain()
 {
 	delete newModel;
+}
+
+Vector3 Terrain::GetHeights() const
+{
+	return heights;
 }
 
 void Terrain::GenerateModel()
@@ -106,4 +112,60 @@ void Terrain::GenerateModel()
 
 void Terrain::Update()
 {
+
+	int i;
+	cameraPosition = SceneManager::GetInstance()->GetActiveCamera()->GetPosition();
+
+	if (abs(cameraPosition.x - center.x) > dimCells)
+	{
+		if (cameraPosition.x > center.x)
+		{
+			for (i = 0; i < vertices.size(); i++)
+			{
+				vertices[i].pos.x += dimCells;
+				vertices[i].uv2.y += 1 / (float)nrCells;
+			}
+
+			center.x += dimCells;
+		}
+		else
+		{
+			for (i = 0; i < vertices.size(); i++)
+			{
+				vertices[i].pos.x -= dimCells;
+				vertices[i].uv2.y -= 1 / (float)nrCells;
+			}
+
+			center.x -= dimCells;
+		}
+	}
+
+	if (abs(cameraPosition.z - center.z) > dimCells)
+	{
+		if (cameraPosition.z > center.z)
+		{
+			for (i = 0; i < vertices.size(); i++)
+			{
+				vertices[i].pos.z += dimCells;
+				vertices[i].uv2.x -= 1 / (float)nrCells;
+			}
+
+			center.z += dimCells;
+		}
+		else
+		{
+			for (i = 0; i < vertices.size(); i++)
+			{
+				vertices[i].pos.z -= dimCells;
+				vertices[i].uv2.x += 1 / (float)nrCells;
+			}
+
+			center.z -= dimCells;
+		}
+	}
+
+	glBindBuffer(GL_ARRAY_BUFFER, model->GetVboId());
+	glBufferData(GL_ARRAY_BUFFER, model->GetVertexBuffer().size() * sizeof(Vertex), vertices.data(), GL_STATIC_DRAW);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+
 }

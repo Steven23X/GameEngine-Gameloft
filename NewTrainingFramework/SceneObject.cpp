@@ -4,6 +4,7 @@
 #include <iostream>
 
 #include "SceneManager.h"
+#include "Terrain.h"
 #include "Vertex.h"
 
 SceneObject::SceneObject(unsigned idSo, const Vector3& position, const Vector3& rotation, const Vector3& scale,
@@ -46,7 +47,7 @@ void SceneObject::Draw() const
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, model->GetIboId());
 
 
-	for (unsigned int i = 0; i < textures.size(); i++)
+	for (unsigned i = 0; i < textures.size(); i++)
 	{
 		glActiveTexture(GL_TEXTURE0 + i);
 
@@ -55,10 +56,9 @@ void SceneObject::Draw() const
 			glBindTexture(GL_TEXTURE_2D, textures[i]->GetTId());
 		}
 
-
-		if (shader->GetTextureUniform() != -1)
+		if (shader->GetTextureUniform(i) != -1)
 		{
-			glUniform1i(shader->GetTextureUniform(), i);
+			glUniform1i(shader->GetTextureUniform(i), i);
 		}
 	}
 
@@ -81,6 +81,11 @@ void SceneObject::Draw() const
 		glVertexAttribPointer(shader->GetUvAttribute(), 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)(5 * sizeof(Vector3)));
 	}
 
+	if (shader->GetUv2Attribute() != -1)
+	{
+		glEnableVertexAttribArray(shader->GetUv2Attribute());
+		glVertexAttribPointer(shader->GetUv2Attribute(), 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)(sizeof(Vector3) * 5 + sizeof(Vector2)));
+	}
 
 	if (SceneManager::GetInstance()->GetActiveCamera() != nullptr)
 	{
@@ -106,11 +111,25 @@ void SceneObject::Draw() const
 			glUniformMatrix4fv(shader->GetProjectionmatrixUniform(), 1, GL_FALSE, (GLfloat*)projectionMatrix.m);
 		}
 
+		if (shader->GetProjectionmatrixUniform() != -1)
+		{
+			glUniformMatrix4fv(shader->GetProjectionmatrixUniform(), 1, GL_FALSE, (GLfloat*)projectionMatrix.m);
+		}
+
+		if (shader->GetHeightUniform() != -1)
+		{
+			GLfloat height[3];
+			height[0] = ((Terrain*)this)->GetHeights().x;
+			height[1] = ((Terrain*)this)->GetHeights().y;
+			height[2] = ((Terrain*)this)->GetHeights().z;
+			glUniform3f(shader->GetHeightUniform(), height[0], height[1], height[2]);
+		}
+		/*
 		if (shader->GetTextureUniform() != -1)
 		{
 			glUniform1i(shader->GetTextureUniform(), 0);
 		}
-
+		*/
 	}
 
 	if (isWired)

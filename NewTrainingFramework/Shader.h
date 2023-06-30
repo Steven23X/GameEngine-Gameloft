@@ -5,6 +5,7 @@
 
 class Shader {
 
+	static const int maxTextures = 5;
 	// Pointer to Shader Resource
 	ShaderResource* sr;
 
@@ -14,12 +15,15 @@ class Shader {
 	GLint positionAttribute;
 	GLint colorAttribute;
 	GLint uvAttribute;
+	GLint uv2Attribute;
+
+	GLint heightUniform;
 
 	GLint modelmatrixUniform;
 	GLint viewmatrixUniform;
 	GLint projectionmatrixUniform;
 
-	GLint textureUniform;
+	GLint textureUniform[maxTextures];
 
 public:
 
@@ -41,7 +45,9 @@ public:
 	GLint GetModelmatrixUniform() const;
 	GLint GetViewmatrixUniform() const;
 	GLint GetProjectionmatrixUniform() const;
-	GLint GetTextureUniform() const;
+	GLint GetUv2Attribute() const;
+	GLint GetHeightUniform() const;
+	GLint GetTextureUniform(int index) const;
 
 	// Destructor
 	~Shader();

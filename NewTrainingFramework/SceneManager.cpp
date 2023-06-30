@@ -385,6 +385,10 @@ void SceneManager::Draw()
 void SceneManager::Update()
 {
 	activeCamera->UpdateWorldView();
+	for (const auto& sceneObject : sceneObjects)
+	{
+		sceneObject->Update();
+	}
 }
 
 SceneManager* SceneManager::GetInstance()

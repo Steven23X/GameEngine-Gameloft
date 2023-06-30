@@ -14,13 +14,15 @@ class Terrain : public SceneObject
 
 public:
 	void GenerateModel();
-	void Update();
+	void Update() override;
 
 	Terrain(unsigned idSo, const Vector3& position, const Vector3& rotation, const Vector3& scale, Model* model,
 		Shader* shader, const std::vector<Texture*>& textures, bool depthTest, bool isWired, int nrCells,
 		float dimCells, float offsetY,Vector3 heights,Vector3 cameraPosition);
 
 	~Terrain();
+
+	Vector3 GetHeights() const;
 };
 
 

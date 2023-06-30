@@ -84,7 +84,7 @@
 				<y>1</y>
 				<z>0</z>
 			</up>
-			<translationSpeed>10</translationSpeed>
+			<translationSpeed>100</translationSpeed>
 			<rotationSpeed>0.3</rotationSpeed>
 			<fov>45</fov>
 			<near>0.1</near>
@@ -168,40 +168,17 @@
 				<y>1.0</y>
 				<z>1.0</z>
 			</scale>
-			<!--
-			Exemple de alte configurari care vor fi adaugate si parsate mai tarziu (pentru taskuri ulterioare)
-			<followingCamera>
-				<cameras>
-					<camera>1</camera>
-				</cameras>
-				<ox/>
-				<oy/>
-				<oz/>
-			</followingCamera>
-			<trajectory type="linear" iteration="infinite" direction="alternate">
-				<comment>startPoint e chiar Pos</comment>
-				<endPoint>
-					<x>0.5</x>
-					<y>100.0</y>
-					<z>1.0</z>				
-				</endPoint>
-				<speed>0.1</speed>
-			</trajectory>
-			<lights>
-				<light>1</light>
-			</lights>
-			-->
 
 		</object>
 		<object id="3">
 			<model>generated</model>
-			<shader>2</shader>
+			<shader>3</shader>
 			<type>terrain</type>
 			<name>Teren</name>
 			<textures>
-				<texture id="2" />
 				<texture id="3" />
 				<texture id="4" />
+				<texture id="2" />
 				<texture id="5" />
 			</textures>
 			<color>
@@ -210,9 +187,9 @@
 				<b>0.0</b>
 			</color>
 			<heights>
-				<r>-400</r>
-				<g>-200</g>
-				<b>100</b>
+				<r>100</r>
+				<g>-100</g>
+				<b>-50</b>
 			</heights>
 			<cellNumber>80</cellNumber>
 			<dimCell>200</dimCell>

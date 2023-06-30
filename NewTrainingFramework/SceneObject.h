@@ -30,6 +30,8 @@ public:
 	// Draw Simple Objects
 	void Draw() const;
 
+	// Virtual Methods
+	virtual void Update() {};
 	// Virtual Destructor
 	virtual ~SceneObject() = default;
 };
