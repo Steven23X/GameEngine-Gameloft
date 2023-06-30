@@ -64,6 +64,8 @@ int Shader::Load()
 	textureUniform[2] = glGetUniformLocation(sId, "u_textureuniform2");
 	textureUniform[3] = glGetUniformLocation(sId, "u_textureuniform3");
 	textureUniform[4] = glGetUniformLocation(sId, "u_textureuniform4");
+
+	textureCubeUniform = glGetUniformLocation(sId, "u_cubetextureuniform");
 	return 0;
 }
 
@@ -135,4 +137,9 @@ GLint Shader::GetTextureUniform(int index) const
 		return textureUniform[index];
 	}
 	return -1;
+}
+
+GLint Shader::GetTextureCubeUniform() const
+{
+	return textureCubeUniform;
 }

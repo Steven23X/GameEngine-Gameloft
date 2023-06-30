@@ -18,15 +18,15 @@ void Texture::Load()
 	int width;
 	int height;
 	int bpp;
-	GLint format, type;
+	GLint format, type = 0;
 
 	// Set Type
 	if (tr->type == "2d")
 	{
 		type = GL_TEXTURE_2D;
 	}
-	else
-		type = 0;
+	else if (tr->type == "cube")
+		type = GL_TEXTURE_CUBE_MAP;
 
 	glGenTextures(1, &tId);
 	glBindTexture(type, tId);
@@ -72,10 +72,59 @@ void Texture::Load()
 		//glActiveTexture(GL_TEXTURE0);
 		glEnable(GL_DEPTH_TEST);
 	}
+	else if (tr->type == "cube")
+	{
+		const int totalTexture = (width / 4) * (bpp / 8);
+		auto buff = new char[totalTexture * height / 3];
+		int i, j;
 
-	delete[] pixelArray;
+		for (i = 0; i < height / 3; i++)
+			for (j = 0; j < totalTexture; j++)
+				buff[i * totalTexture + j] = pixelArray[i * width * bpp / 8 + (j + totalTexture)];
+
+		glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_Y, 0, format, width / 4, height / 3, 0, format, GL_UNSIGNED_BYTE,
+		             (GLvoid*)buff);
+
+		for (i = 0; i < height / 3; i++)
+			for (j = 0; j < totalTexture; j++)
+				buff[i * totalTexture + j] = pixelArray[(i + height / 3) * width * bpp / 8 + j];
+
+		glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_X, 0, format, width / 4, height / 3, 0, format, GL_UNSIGNED_BYTE,
+		             (GLvoid*)buff);
+
+		for (i = 0; i < height / 3; i++)
+			for (j = 0; j < totalTexture; j++)
+				buff[i * totalTexture + j] = pixelArray[(i + height / 3) * width * bpp / 8 + (j + totalTexture)];
+
+		glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_Z, 0, format, width / 4, height / 3, 0, format, GL_UNSIGNED_BYTE,
+		             (GLvoid*)buff);
+
+		for (i = 0; i < height / 3; i++)
+			for (j = 0; j < totalTexture; j++)
+				buff[i * totalTexture + j] = pixelArray[(i + height / 3) * width * bpp / 8 + (j + 2 * totalTexture)];
+
+		glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X, 0, format, width / 4, height / 3, 0, format, GL_UNSIGNED_BYTE,
+		             (GLvoid*)buff);
+
+		for (i = 0; i < height / 3; i++)
+			for (j = 0; j < totalTexture; j++)
+				buff[i * totalTexture + j] = pixelArray[(i + height / 3) * width * bpp / 8 + (j + 3 * totalTexture)];
+
+		glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_Z, 0, format, width / 4, height / 3, 0, format, GL_UNSIGNED_BYTE,
+		             (GLvoid*)buff);
+
+		for (i = 0; i < height / 3; i++)
+			for (j = 0; j < totalTexture; j++)
+				buff[i * totalTexture + j] = pixelArray[(i + 2 * height / 3) * width * bpp / 8 + (j + totalTexture)];
+
+		glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_Y, 0, format, width / 4, height / 3, 0, format, GL_UNSIGNED_BYTE,
+		             (GLvoid*)buff);
+		delete[] buff;
+
+	}
 
 	glBindTexture(type, 0);
+	delete[] pixelArray;
 }
 
 // Getters

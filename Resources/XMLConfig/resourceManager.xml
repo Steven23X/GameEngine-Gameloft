@@ -11,6 +11,9 @@
 			<model id="3">
 				<file>Terrain.nfg</file>
 			</model>
+			<model id="4">
+				<file>SkyBox.nfg</file>
+			</model>
 		</folder>
 	</models>
 	<shaders>
@@ -26,6 +29,10 @@
 			<shader id="3">
 				<vs>terrainShader.vs</vs>
 				<fs>terrainShader.fs</fs>
+			</shader>
+			<shader id="4">
+				<vs>skyboxShader.vs</vs>
+				<fs>skyboxShader.fs</fs>
 			</shader>
 		</folder>
 
@@ -66,6 +73,13 @@
 				<mag_filter>LINEAR</mag_filter>
 				<wrap_s>REPEAT</wrap_s>
 				<wrap_t>REPEAT</wrap_t>
+			</texture>
+			<texture id="6" type="cube">
+				<file>EnvMap.tga</file>
+				<min_filter>LINEAR</min_filter>
+				<mag_filter>LINEAR</mag_filter>
+				<wrap_s>CLAMP_TO_EDGE</wrap_s>
+				<wrap_t>CLAMP_TO_EDGE</wrap_t>
 			</texture>
 		</folder>
 	</textures>

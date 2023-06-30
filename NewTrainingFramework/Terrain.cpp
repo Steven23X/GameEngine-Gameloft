@@ -3,14 +3,18 @@
 #include "SceneManager.h"
 
 Terrain::Terrain(unsigned idSo, const Vector3& position, const Vector3& rotation, const Vector3& scale, Model* model,
-                 Shader* shader, const std::vector<Texture*>& textures, bool depthTest, bool isWired, int nrCells, float dimCells,
-                 float offsetY, Vector3 heights, Vector3 cameraPosition) : SceneObject(idSo, position, rotation, scale, model,
-                                                                                       shader, textures, depthTest, isWired),
+                 Shader* shader, const std::vector<Texture*>& textures, bool depthTest, bool isWired,
+                 bool isFollowingCamera, Vector3 followingCamera, int nrCells, float dimCells,
+                 float offsetY, Vector3 heights, Vector3 cameraPosition) : SceneObject(idSo, position, rotation, scale,
+	                                                                           model,
+	                                                                           shader, textures, depthTest, isWired,
+	                                                                           isFollowingCamera, followingCamera),
                                                                            nrCells(nrCells),
                                                                            dimCells(dimCells),
                                                                            offsetY(offsetY),
                                                                            cameraPosition(cameraPosition),
                                                                            heights(heights)
+
 {
 	GenerateModel();
 }
@@ -69,7 +73,6 @@ void Terrain::GenerateModel()
 			vertices.push_back(newVertex);
 
 			indicesCount[i][j] = k++;
-
 		}
 	}
 
@@ -77,7 +80,6 @@ void Terrain::GenerateModel()
 	{
 		for (unsigned int j = 0; j < nrCells; j++)
 		{
-
 			indices.push_back(indicesCount[i][j]);
 			indices.push_back(indicesCount[i][j + 1]);
 			indices.push_back(indicesCount[i + 1][j]);
@@ -85,7 +87,6 @@ void Terrain::GenerateModel()
 			indices.push_back(indicesCount[i][j + 1]);
 			indices.push_back(indicesCount[i + 1][j]);
 			indices.push_back(indicesCount[i + 1][j + 1]);
-
 		}
 	}
 
@@ -95,14 +96,16 @@ void Terrain::GenerateModel()
 	newModel->SetVboId(vboId);
 	newModel->SetVertexBuffer(vertices);
 	glBindBuffer(GL_ARRAY_BUFFER, newModel->GetVboId());
-	glBufferData(GL_ARRAY_BUFFER, newModel->GetVertexBuffer().size() * sizeof(Vertex), newModel->GetVertexBuffer().data(), GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, newModel->GetVertexBuffer().size() * sizeof(Vertex),
+	             newModel->GetVertexBuffer().data(), GL_STATIC_DRAW);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 	glGenBuffers(1, &iboId);
 	newModel->SetIboId(iboId);
 	newModel->SetIndexBuffer(indices);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, newModel->GetIboId());
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, newModel->GetIndexBuffer().size() * sizeof(GLushort), newModel->GetIndexBuffer().data(), GL_STATIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, newModel->GetIndexBuffer().size() * sizeof(GLushort),
+	             newModel->GetIndexBuffer().data(), GL_STATIC_DRAW);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
 	newModel->SetNrIndex(indices.size());
@@ -112,7 +115,6 @@ void Terrain::GenerateModel()
 
 void Terrain::Update()
 {
-
 	int i;
 	cameraPosition = SceneManager::GetInstance()->GetActiveCamera()->GetPosition();
 
@@ -167,5 +169,4 @@ void Terrain::Update()
 	glBindBuffer(GL_ARRAY_BUFFER, model->GetVboId());
 	glBufferData(GL_ARRAY_BUFFER, model->GetVertexBuffer().size() * sizeof(Vertex), vertices.data(), GL_STATIC_DRAW);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
-
 }

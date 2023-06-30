@@ -40,6 +40,14 @@
 			<key>E</key>
 			<action>MOVE_CAMERA_NEGATIVE_Y</action>
 		</control>
+		<control>
+			<key>K</key>
+			<action>ROTATE_CAMERA_POSITIVE_Y</action>
+		</control>
+		<control>
+			<key>L</key>
+			<action>ROTATE_CAMERA_NEGATIVE_Y</action>
+		</control>
 	</controls>
 
 
@@ -88,7 +96,7 @@
 			<rotationSpeed>0.3</rotationSpeed>
 			<fov>45</fov>
 			<near>0.1</near>
-			<far>10000</far>
+			<far>30000</far>
 		</camera>
 	</cameras>
 	<activeCamera>2</activeCamera>
@@ -209,6 +217,40 @@
 				<y>1.0</y>
 				<z>1.0</z>
 			</scale>
+		</object>
+
+		<object id="4">
+			<model>4</model>
+			<shader>4</shader>
+			<type>skybox</type>
+			<name>SkyBox</name>
+			<textures>
+				<texture id="6" />
+			</textures>
+			<color>
+				<r>1.0</r>
+				<g>0.0</g>
+				<b>0.0</b>
+			</color>
+			<position>
+				<x>0.0</x>
+				<y>100.0</y>
+				<z>0.0</z>
+			</position>
+			<rotation>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>3.14159265359</z>
+			</rotation>
+			<scale>
+				<x>10000.0</x>
+				<y>10000.0</y>
+				<z>10000.0</z>
+			</scale>
+			<followingCamera>
+				<ox />
+				<oz />
+			</followingCamera>
 		</object>
 	</objects>
 

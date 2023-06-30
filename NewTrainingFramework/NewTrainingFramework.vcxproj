@@ -169,6 +169,7 @@
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SceneObject.cpp" />
     <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="SkyBox.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug-ATI|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug-Nvidia|Win32'">Create</PrecompiledHeader>
@@ -182,6 +183,7 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CameraResource.h" />
     <ClInclude Include="ControlResource.h" />
+    <ClInclude Include="FollowingCameraResource.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="ModelResource.h" />
@@ -191,6 +193,7 @@
     <ClInclude Include="SceneObject.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShaderResource.h" />
+    <ClInclude Include="SkyBox.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Terrain.h" />
@@ -203,10 +206,13 @@
   <ItemGroup>
     <None Include="..\Resources\Models\Bila.nfg" />
     <None Include="..\Resources\Models\Croco.nfg" />
+    <None Include="..\Resources\Models\SkyBox.nfg" />
     <None Include="..\Resources\Models\Terrain.nfg" />
     <None Include="..\Resources\Shaders\modelShader.fs" />
     <None Include="..\Resources\Shaders\modelShader.vs" />
     <None Include="..\Resources\Shaders\modelShaderWired.fs" />
+    <None Include="..\Resources\Shaders\skyboxShader.fs" />
+    <None Include="..\Resources\Shaders\skyboxShader.vs" />
     <None Include="..\Resources\Shaders\terrainShader.fs" />
     <None Include="..\Resources\Shaders\terrainShader.vs" />
   </ItemGroup>

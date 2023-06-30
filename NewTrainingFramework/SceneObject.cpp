@@ -8,17 +8,22 @@
 #include "Vertex.h"
 
 SceneObject::SceneObject(unsigned idSo, const Vector3& position, const Vector3& rotation, const Vector3& scale,
-	Model* model, Shader* shader, const std::vector<Texture*>& textures, const bool depthTest, bool isWired)
+                         Model* model, Shader* shader, const std::vector<Texture*>& textures, const bool depthTest,
+                         bool isWired, bool isFollowingCamera, Vector3 followingCamera)
 	: idSo(idSo),
-	position(position),
-	rotation(rotation),
-	scale(scale),
-	model(model),
-	shader(shader),
-	textures(textures),
-	depthTest(depthTest),
-	isWired(isWired)
-{}
+	  position(position),
+	  rotation(rotation),
+	  scale(scale),
+	  model(model),
+	  shader(shader),
+	  textures(textures),
+	  followingCamera(followingCamera),
+	  depthTest(depthTest),
+	  isWired(isWired),
+	  isFollowingCamera(isFollowingCamera)
+{
+	offset = Vector3(position.x,position.y,position.z);
+}
 
 Matrix SceneObject::GetModelMatrix() const
 {
@@ -56,9 +61,19 @@ void SceneObject::Draw() const
 			glBindTexture(GL_TEXTURE_2D, textures[i]->GetTId());
 		}
 
+		if (textures[i]->GetTr()->type == "cube")
+		{
+			glBindTexture(GL_TEXTURE_CUBE_MAP, textures[i]->GetTId());
+		}
+
 		if (shader->GetTextureUniform(i) != -1)
 		{
 			glUniform1i(shader->GetTextureUniform(i), i);
+		}
+
+		if (shader->GetTextureCubeUniform() != -1)
+		{
+			glUniform1i(shader->GetTextureCubeUniform(), i);
 		}
 	}
 
@@ -72,19 +87,22 @@ void SceneObject::Draw() const
 	if (shader->GetColorAttribute() != -1)
 	{
 		glEnableVertexAttribArray(shader->GetColorAttribute());
-		glVertexAttribPointer(shader->GetColorAttribute(), 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)sizeof(Vector3));
+		glVertexAttribPointer(shader->GetColorAttribute(), 3, GL_FLOAT, GL_FALSE, sizeof(Vertex),
+		                      (void*)sizeof(Vector3));
 	}
 
 	if (shader->GetUvAttribute() != -1)
 	{
 		glEnableVertexAttribArray(shader->GetUvAttribute());
-		glVertexAttribPointer(shader->GetUvAttribute(), 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)(5 * sizeof(Vector3)));
+		glVertexAttribPointer(shader->GetUvAttribute(), 3, GL_FLOAT, GL_FALSE, sizeof(Vertex),
+		                      (void*)(5 * sizeof(Vector3)));
 	}
 
 	if (shader->GetUv2Attribute() != -1)
 	{
 		glEnableVertexAttribArray(shader->GetUv2Attribute());
-		glVertexAttribPointer(shader->GetUv2Attribute(), 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)(sizeof(Vector3) * 5 + sizeof(Vector2)));
+		glVertexAttribPointer(shader->GetUv2Attribute(), 2, GL_FLOAT, GL_FALSE, sizeof(Vertex),
+		                      (void*)(sizeof(Vector3) * 5 + sizeof(Vector2)));
 	}
 
 	if (SceneManager::GetInstance()->GetActiveCamera() != nullptr)
@@ -99,7 +117,6 @@ void SceneObject::Draw() const
 		{
 			glUniformMatrix4fv(shader->GetModelmatrixUniform(), 1, GL_FALSE, (GLfloat*)modelMatrix.m);
 		}
-
 
 		if (shader->GetViewmatrixUniform() != -1)
 		{
@@ -124,12 +141,6 @@ void SceneObject::Draw() const
 			height[2] = ((Terrain*)this)->GetHeights().z;
 			glUniform3f(shader->GetHeightUniform(), height[0], height[1], height[2]);
 		}
-		/*
-		if (shader->GetTextureUniform() != -1)
-		{
-			glUniform1i(shader->GetTextureUniform(), 0);
-		}
-		*/
 	}
 
 	if (isWired)
@@ -141,5 +152,25 @@ void SceneObject::Draw() const
 		glBindTexture(GL_TEXTURE_2D, 0);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
+}
 
+void SceneObject::Update()
+{
+	if(isFollowingCamera)
+	{
+		if (followingCamera.x == 1.0f)
+		{
+			position.x = SceneManager::GetInstance()->GetActiveCamera()->GetPosition().x + offset.x ;
+		}
+
+		if (followingCamera.y == 1.0f)
+		{
+			position.y = SceneManager::GetInstance()->GetActiveCamera()->GetPosition().y + offset.y ;
+		}
+
+		if (followingCamera.z == 1.0f)
+		{
+			position.z = SceneManager::GetInstance()->GetActiveCamera()->GetPosition().z + offset.z ;
+		}
+	}
 }

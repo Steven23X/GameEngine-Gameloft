@@ -24,6 +24,7 @@ class Shader {
 	GLint projectionmatrixUniform;
 
 	GLint textureUniform[maxTextures];
+	GLint textureCubeUniform;
 
 public:
 
@@ -48,7 +49,7 @@ public:
 	GLint GetUv2Attribute() const;
 	GLint GetHeightUniform() const;
 	GLint GetTextureUniform(int index) const;
-
+	GLint GetTextureCubeUniform() const;
 	// Destructor
 	~Shader();
 };

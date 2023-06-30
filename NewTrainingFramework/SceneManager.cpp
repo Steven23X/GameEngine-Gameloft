@@ -4,9 +4,11 @@
 #include <sstream>
 #include "ResourceManager.h"
 #include "CameraResource.h"
+#include "FollowingCameraResource.h"
 #include "ObjectResource.h"
 #include "TerrainResource.h"
 #include "Globals.h"
+#include "SkyBox.h"
 #include "Terrain.h"
 
 SceneManager* SceneManager::spInstance = nullptr;
@@ -88,6 +90,14 @@ void SceneManager::Controls(unsigned char key, bool bIsPressed)
 			else if (action == "MOVE_CAMERA_NEGATIVE_Y")
 			{
 				activeCamera->MoveOy(-1);
+			}
+			else if (action == "ROTATE_CAMERA_NEGATIVE_Y")
+			{
+				activeCamera->RotateOy(-1);
+			}
+			else if (action == "ROTATE_CAMERA_POSITIVE_Y")
+			{
+				activeCamera->RotateOy(1);
 			}
 		}
 	}
@@ -307,6 +317,7 @@ void SceneManager::InitObjects(xml_node<>* objects)
 		Vector3 v3Scale(objectResource.scaleX, objectResource.scaleY, objectResource.scaleZ);
 		unsigned int idKey = std::stoi(id->value());
 
+		// terrain attributes
 		if (objectResource.type == "terrain")
 		{
 			xml_node<>* heights = x->first_node("heights");
@@ -327,6 +338,32 @@ void SceneManager::InitObjects(xml_node<>* objects)
 			xml_node<>* offsetY = x->first_node("offsetY");
 			terrainResource.offsetY = std::stof(offsetY->value());
 		}
+
+		// following camera attributes
+		FollowingCameraResource fcr;
+		fcr.ox = fcr.oy = fcr.oz = 0.0f;
+		xml_node<>* followingCameraNode = x->first_node("followingCamera");
+		if(followingCameraNode)
+		{
+			fcr.isFollowing = true;
+			xml_node<>* ox = followingCameraNode->first_node("ox");
+			xml_node<>* oy = followingCameraNode->first_node("ox");
+			xml_node<>* oz = followingCameraNode->first_node("ox");
+
+			if (ox)
+				fcr.ox = 1.0;
+			if (oy)
+				fcr.oy = 1.0;
+			if (oz)
+				fcr.oz = 1.0;
+		}
+		else
+		{
+			fcr.isFollowing = false;
+		}
+		Vector3 followingCamera(fcr.ox,fcr.oy,fcr.oz);
+
+
 		//Texture Load
 		std::vector<Texture*> pTextures ;
 		if (objectResource.textures.empty() == false)
@@ -361,14 +398,19 @@ void SceneManager::InitObjects(xml_node<>* objects)
 		SceneObject* newSceneObject;
 		if (objectResource.type == "normal")
 			newSceneObject = new SceneObject(idKey, v3Position, v3Rotation, v3Scale, pModel, pShader, pTextures, true,
-			                                 objectResource.isWired);
+			                                 objectResource.isWired,fcr.isFollowing,followingCamera);
 		else if (objectResource.type == "terrain")
 		{
 			newSceneObject = new Terrain(idKey, v3Position, v3Rotation, v3Scale, pModel, pShader, pTextures, true,
-				objectResource.isWired, terrainResource.cellNumber,
+				objectResource.isWired, fcr.isFollowing, followingCamera, terrainResource.cellNumber,
 				terrainResource.dimCell, terrainResource.offsetY,
 				Vector3(terrainResource.heightR, terrainResource.heightG,
 					terrainResource.heightB), activeCamera->GetPosition());
+		}
+		else if(objectResource.type =="skybox")
+		{
+			newSceneObject = new SkyBox(idKey, v3Position, v3Rotation, v3Scale, pModel, pShader, pTextures, true,
+				objectResource.isWired,fcr.isFollowing, followingCamera);
 		}
 		sceneObjects.push_back(newSceneObject);
 	}
