@@ -14,6 +14,12 @@
 			<model id="4">
 				<file>SkyBox.nfg</file>
 			</model>
+			<model id="5">
+				<file>Train.nfg</file>
+			</model>
+			<model id="6">
+				<file>Fire.nfg</file>
+			</model>
 		</folder>
 	</models>
 	<shaders>
@@ -41,6 +47,10 @@
 			<shader id="6">
 				<vs>textureReflexionShader.vs</vs>
 				<fs>textureReflexionShader.fs</fs>
+			</shader>
+			<shader id="7">
+				<vs>fireShader.vs</vs>
+				<fs>fireShader.fs</fs>
 			</shader>
 		</folder>
 
@@ -88,6 +98,34 @@
 				<mag_filter>LINEAR</mag_filter>
 				<wrap_s>CLAMP_TO_EDGE</wrap_s>
 				<wrap_t>CLAMP_TO_EDGE</wrap_t>
+			</texture>
+			<texture id="7" type="2d">
+				<file>Train.tga</file>
+				<min_filter>LINEAR</min_filter>
+				<mag_filter>LINEAR</mag_filter>
+				<wrap_s>CLAMP_TO_EDGE</wrap_s>
+				<wrap_t>CLAMP_TO_EDGE</wrap_t>
+			</texture>
+			<texture id="8" type="2d">
+				<file>Fire.tga</file>
+				<min_filter>LINEAR</min_filter>
+				<mag_filter>LINEAR</mag_filter>
+				<wrap_s>CLAMP_TO_EDGE</wrap_s>
+				<wrap_t>CLAMP_TO_EDGE</wrap_t>
+			</texture>
+			<texture id="9" type="2d">
+				<file>FireMask.tga</file>
+				<min_filter>LINEAR</min_filter>
+				<mag_filter>LINEAR</mag_filter>
+				<wrap_s>CLAMP_TO_EDGE</wrap_s>
+				<wrap_t>CLAMP_TO_EDGE</wrap_t>
+			</texture>
+			<texture id="10" type="2d">
+				<file>DisplacementMap.tga</file>
+				<min_filter>LINEAR</min_filter>
+				<mag_filter>LINEAR</mag_filter>
+				<wrap_s>REPEAT</wrap_s>
+				<wrap_t>REPEAT</wrap_t>
 			</texture>
 		</folder>
 	</textures>

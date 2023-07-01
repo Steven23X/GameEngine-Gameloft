@@ -163,6 +163,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Fire.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="NewTrainingFramework.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
@@ -183,6 +184,7 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CameraResource.h" />
     <ClInclude Include="ControlResource.h" />
+    <ClInclude Include="Fire.h" />
     <ClInclude Include="FogResource.h" />
     <ClInclude Include="FollowingCameraResource.h" />
     <ClInclude Include="Globals.h" />
@@ -209,6 +211,8 @@
     <None Include="..\Resources\Models\Croco.nfg" />
     <None Include="..\Resources\Models\SkyBox.nfg" />
     <None Include="..\Resources\Models\Terrain.nfg" />
+    <None Include="..\Resources\Shaders\fireShader.fs" />
+    <None Include="..\Resources\Shaders\fireShader.vs" />
     <None Include="..\Resources\Shaders\modelShader.fs" />
     <None Include="..\Resources\Shaders\modelShader.vs" />
     <None Include="..\Resources\Shaders\modelShaderWired.fs" />

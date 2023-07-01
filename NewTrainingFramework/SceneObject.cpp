@@ -3,6 +3,7 @@
 
 #include <iostream>
 
+#include "Fire.h"
 #include "SceneManager.h"
 #include "Terrain.h"
 #include "Vertex.h"
@@ -83,7 +84,6 @@ void SceneObject::Draw() const
 			}
 		}
 	}
-	err = glGetError();
 
 	if (shader->GetPositionAttribute() != -1)
 	{
@@ -177,13 +177,23 @@ void SceneObject::Draw() const
 		{
 			glUniform3f(shader->GetFogcolorUniform(), fog.r, fog.g, fog.b);
 		}
+
+		if (shader->GetTimeUniform() != -1)
+		{
+			const GLfloat time = ((Fire*)this)->GetTime();
+			glUniform1f(shader->GetTimeUniform(), time);
+		}
+
+		if (shader->GetDispMaxUniform() != -1)
+		{
+			const GLfloat dispMax = ((Fire*)this)->GetDispMax();
+			glUniform1f(shader->GetDispMaxUniform(), dispMax);
+		}
 	}
-	err = glGetError();
 	if (isWired)
 		glDrawElements(GL_LINES, model->GetNrIndiciWired(), GL_UNSIGNED_SHORT, 0);
 	else
 		glDrawElements(GL_TRIANGLES, model->GetNrIndex(), GL_UNSIGNED_SHORT, 0);
-	err = glGetError();
 
 	if (textures.empty() == false)
 	{

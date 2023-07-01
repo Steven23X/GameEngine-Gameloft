@@ -78,9 +78,9 @@
 		<camera id="2">
 			<type>none</type>
 			<position>
-				<x>0</x>
-				<y>0</y>
-				<z>500</z>
+				<x>-442.922</x>
+				<y>100</y>
+				<z>770.187</z>
 			</position>
 			<target>
 				<x>0</x>
@@ -104,27 +104,27 @@
 	<!--Objects-->
 	<objects>
 		<object id="1">
-			<model>1</model>
+			<model>5</model>
 			<shader>1</shader>
 			<type>normal</type>
-			<name>Crocodil_verde</name>
+			<name>Train</name>
 			<textures>
-				<texture id="1" />
+				<texture id="7" />
 			</textures>
 			<position>
-				<x>20.5</x>
-				<y>27</y>
-				<z>21.22</z>
+				<x>300.5</x>
+				<y>0</y>
+				<z>-550.22</z>
 			</position>
 			<rotation>
-				<x>3.14</x>
-				<y>3.14</y>
+				<x>0</x>
+				<y>0</y>
 				<z>0</z>
 			</rotation>
 			<scale>
-				<x>1.0</x>
-				<y>1.0</y>
-				<z>1.0</z>
+				<x>2.0</x>
+				<y>2.0</y>
+				<z>2.0</z>
 			</scale>
 			<!--
 			Exemple de alte configurari care vor fi adaugate si parsate mai tarziu (pentru taskuri ulterioare)
@@ -155,7 +155,7 @@
 			</color>
 			<position>
 				<x>500</x>
-				<y>1.4</y>
+				<y>50</y>
 				<z>20</z>
 			</position>
 			<rotation>
@@ -164,9 +164,9 @@
 				<z>0</z>
 			</rotation>
 			<scale>
-				<x>1.0</x>
-				<y>1.0</y>
-				<z>1.0</z>
+				<x>2.0</x>
+				<y>2.0</y>
+				<z>2.0</z>
 			</scale>
 
 		</object>
@@ -177,6 +177,7 @@
 			<type>normal</type>
 			<name>BallTotalReflexion</name>
 			<textures>
+				<texture id="3" />
 				<texture id="6" />
 			</textures>
 			<color>
@@ -186,8 +187,8 @@
 			</color>
 			<position>
 				<x>500</x>
-				<y>1.4</y>
-				<z>200</z>
+				<y>50</y>
+				<z>380</z>
 			</position>
 			<rotation>
 				<x>0</x>
@@ -195,9 +196,9 @@
 				<z>0</z>
 			</rotation>
 			<scale>
-				<x>1.0</x>
-				<y>1.0</y>
-				<z>1.0</z>
+				<x>2.0</x>
+				<y>2.0</y>
+				<z>2.0</z>
 			</scale>
 
 		</object>
@@ -218,8 +219,8 @@
 			</color>
 			<position>
 				<x>500</x>
-				<y>1.4</y>
-				<z>380</z>
+				<y>50</y>
+				<z>740</z>
 			</position>
 			<rotation>
 				<x>0</x>
@@ -227,9 +228,9 @@
 				<z>0</z>
 			</rotation>
 			<scale>
-				<x>1.0</x>
-				<y>1.0</y>
-				<z>1.0</z>
+				<x>2.0</x>
+				<y>2.0</y>
+				<z>2.0</z>
 			</scale>
 		</object>
 
@@ -306,6 +307,39 @@
 				<ox />
 				<oz />
 			</followingCamera>
+		</object>
+
+		<object id="7">
+			<model>6</model>
+			<shader>7</shader>
+			<type>fire</type>
+			<name>Fire</name>
+			<color>
+				<r>1.0</r>
+				<g>0.0</g>
+				<b>0.0</b>
+			</color>
+			<textures>
+				<texture id="10" />
+				<texture id="8" />
+				<texture id="9" />
+			</textures>
+			<position>
+				<x>250</x>
+				<y>-270</y>
+				<z>20</z>
+			</position>
+			<rotation>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</rotation>
+			<scale>
+				<x>15.0</x>
+				<y>20.0</y>
+				<z>15.0</z>
+			</scale>
+			<dispMax>0.2</dispMax>
 		</object>
 	</objects>
 

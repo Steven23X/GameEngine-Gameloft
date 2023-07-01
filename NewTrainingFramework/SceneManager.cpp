@@ -1,9 +1,11 @@
 #include "stdafx.h"
 #include "SceneManager.h"
 #include <fstream>
+#include <iostream>
 #include <sstream>
 #include "ResourceManager.h"
 #include "CameraResource.h"
+#include "Fire.h"
 #include "FogResource.h"
 #include "FollowingCameraResource.h"
 #include "ObjectResource.h"
@@ -362,6 +364,14 @@ void SceneManager::InitObjects(xml_node<>* objects)
 			terrainResource.offsetY = std::stof(offsetY->value());
 		}
 
+		// fire attributes
+		float dispMax = 0;
+		if(objectResource.type == "fire")
+		{
+			xml_node<>* dispMaxNode = x->first_node("dispMax");
+			dispMax = std::stof(dispMaxNode->value());
+		}
+
 		// following camera attributes
 		FollowingCameraResource fcr;
 		fcr.ox = fcr.oy = fcr.oz = 0.0f;
@@ -435,6 +445,11 @@ void SceneManager::InitObjects(xml_node<>* objects)
 			newSceneObject = new SkyBox(idKey, v3Position, v3Rotation, v3Scale, pModel, pShader, pTextures, true,
 				objectResource.isWired,fcr.isFollowing, followingCamera,fg);
 		}
+		else if(objectResource.type == "fire")
+		{
+			newSceneObject = new Fire(idKey, v3Position, v3Rotation, v3Scale, pModel, pShader, pTextures, true,
+				objectResource.isWired, fcr.isFollowing, followingCamera, fg,dispMax);
+		}
 		sceneObjects.push_back(newSceneObject);
 	}
 }
@@ -450,6 +465,7 @@ void SceneManager::Draw()
 void SceneManager::Update()
 {
 	activeCamera->UpdateWorldView();
+
 	for (const auto& sceneObject : sceneObjects)
 	{
 		sceneObject->Update();

@@ -31,6 +31,9 @@ class Shader {
 	GLint smallradiusUniform;
 	GLint bigradiusUniform;
 	GLint fogcolorUniform;
+
+	GLint timeUniform;
+	GLint dispMaxUniform;
 public:
 
 	// Constructors
@@ -60,6 +63,8 @@ public:
 	GLint GetSmallradiusUniform() const;
 	GLint GetBigradiusUniform() const;
 	GLint GetFogcolorUniform() const;
+	GLint GetTimeUniform() const;
+	GLint GetDispMaxUniform() const;
 	// Destructor
 	~Shader();
 };

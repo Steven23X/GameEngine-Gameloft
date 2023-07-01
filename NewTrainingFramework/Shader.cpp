@@ -74,6 +74,8 @@ int Shader::Load()
 	bigradiusUniform = glGetUniformLocation(sId, "u_bradius");
 	fogcolorUniform = glGetUniformLocation(sId, "u_fogcolor");
 
+	timeUniform = glGetUniformLocation(sId, "u_time");
+	dispMaxUniform = glGetUniformLocation(sId, "u_dispmax");
 	return 0;
 }
 
@@ -175,4 +177,14 @@ GLint Shader::GetBigradiusUniform() const
 GLint Shader::GetFogcolorUniform() const
 {
 	return fogcolorUniform;
+}
+
+GLint Shader::GetTimeUniform() const
+{
+	return timeUniform;
+}
+
+GLint Shader::GetDispMaxUniform() const
+{
+	return dispMaxUniform;
 }
