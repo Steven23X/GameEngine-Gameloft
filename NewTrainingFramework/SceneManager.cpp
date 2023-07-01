@@ -4,6 +4,7 @@
 #include <sstream>
 #include "ResourceManager.h"
 #include "CameraResource.h"
+#include "FogResource.h"
 #include "FollowingCameraResource.h"
 #include "ObjectResource.h"
 #include "TerrainResource.h"
@@ -120,6 +121,9 @@ void SceneManager::Init()
 
 	xml_node<>* sceneManager = doc->first_node();
 
+	//retrieving fog
+	xml_node<>* fog = sceneManager->first_node("fog");
+	InitFog(fog);
 	// retrieving controls
 	xml_node<>* controls = sceneManager->first_node("controls");
 	InitControls(controls);
@@ -135,6 +139,25 @@ void SceneManager::Init()
 	InitObjects(objects);
 
 	delete doc;
+}
+
+void SceneManager::InitFog(xml_node<>* fog)
+{
+	xml_node<>* sr = fog->first_node("r");
+	xml_node<>* bR = fog->first_node("R");
+
+	fg.smallRadius = std::stof(sr->value());
+	fg.bigRadius = std::stof(bR->value());
+
+	xml_node<>* color = fog->first_node("color");
+
+	const xml_node<>* r = color->first_node("r");
+	fg.r = std::stof(r->value());
+	const xml_node<>* g = color->first_node("g");
+	fg.g = std::stof(g->value());
+	const xml_node<>* b = color->first_node("b");
+	fg.b = std::stof(b->value());
+
 }
 
 void SceneManager::InitControls(xml_node<>* controls)
@@ -398,19 +421,19 @@ void SceneManager::InitObjects(xml_node<>* objects)
 		SceneObject* newSceneObject;
 		if (objectResource.type == "normal")
 			newSceneObject = new SceneObject(idKey, v3Position, v3Rotation, v3Scale, pModel, pShader, pTextures, true,
-			                                 objectResource.isWired,fcr.isFollowing,followingCamera);
+			                                 objectResource.isWired,fcr.isFollowing,followingCamera,fg);
 		else if (objectResource.type == "terrain")
 		{
 			newSceneObject = new Terrain(idKey, v3Position, v3Rotation, v3Scale, pModel, pShader, pTextures, true,
 				objectResource.isWired, fcr.isFollowing, followingCamera, terrainResource.cellNumber,
 				terrainResource.dimCell, terrainResource.offsetY,
 				Vector3(terrainResource.heightR, terrainResource.heightG,
-					terrainResource.heightB), activeCamera->GetPosition());
+					terrainResource.heightB), activeCamera->GetPosition(),fg);
 		}
 		else if(objectResource.type =="skybox")
 		{
 			newSceneObject = new SkyBox(idKey, v3Position, v3Rotation, v3Scale, pModel, pShader, pTextures, true,
-				objectResource.isWired,fcr.isFollowing, followingCamera);
+				objectResource.isWired,fcr.isFollowing, followingCamera,fg);
 		}
 		sceneObjects.push_back(newSceneObject);
 	}

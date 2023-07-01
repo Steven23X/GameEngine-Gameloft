@@ -183,6 +183,7 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CameraResource.h" />
     <ClInclude Include="ControlResource.h" />
+    <ClInclude Include="FogResource.h" />
     <ClInclude Include="FollowingCameraResource.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="Model.h" />
@@ -215,6 +216,10 @@
     <None Include="..\Resources\Shaders\skyboxShader.vs" />
     <None Include="..\Resources\Shaders\terrainShader.fs" />
     <None Include="..\Resources\Shaders\terrainShader.vs" />
+    <None Include="..\Resources\Shaders\textureReflexionShader.fs" />
+    <None Include="..\Resources\Shaders\textureReflexionShader.vs" />
+    <None Include="..\Resources\Shaders\totalReflexionShader.fs" />
+    <None Include="..\Resources\Shaders\totalReflexionShader.vs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Utilities\Utilities.vcxproj">

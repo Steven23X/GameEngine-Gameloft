@@ -161,6 +161,9 @@
     <ClInclude Include="FollowingCameraResource.h">
       <Filter>Header Files\SceneManager\Resources</Filter>
     </ClInclude>
+    <ClInclude Include="FogResource.h">
+      <Filter>Header Files\SceneManager\Resources</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Resources\Shaders\modelShader.fs">
@@ -195,6 +198,18 @@
     </None>
     <None Include="..\Resources\Models\SkyBox.nfg">
       <Filter>Resources\Models</Filter>
+    </None>
+    <None Include="..\Resources\Shaders\totalReflexionShader.fs">
+      <Filter>Resources\Shaders</Filter>
+    </None>
+    <None Include="..\Resources\Shaders\totalReflexionShader.vs">
+      <Filter>Resources\Shaders</Filter>
+    </None>
+    <None Include="..\Resources\Shaders\textureReflexionShader.fs">
+      <Filter>Resources\Shaders</Filter>
+    </None>
+    <None Include="..\Resources\Shaders\textureReflexionShader.vs">
+      <Filter>Resources\Shaders</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

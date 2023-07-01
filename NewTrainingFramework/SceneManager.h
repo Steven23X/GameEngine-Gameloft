@@ -6,6 +6,8 @@
 #include "SceneObject.h"
 #include <vector>
 #include <map>
+
+#include "FogResource.h"
 using namespace rapidxml;
 
 class SceneManager {
@@ -20,6 +22,7 @@ class SceneManager {
 
 	std::vector<SceneObject*> sceneObjects;
 
+	FogResource fg;
 public:
 
 	SceneManager(const SceneManager&) = delete; // Disable copy constructor
@@ -29,6 +32,7 @@ public:
 	void Controls(unsigned char key, bool bIsPressed);
 
 	void Init();
+	void InitFog(xml_node<>* fog);
 	void InitControls(xml_node<>* controls);
 	void InitCameras(xml_node<>* cameras, xml_node<>* activeCameraId);
 	void InitObjects(xml_node<>* objects);

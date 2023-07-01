@@ -70,7 +70,6 @@ void Texture::Load()
 	{
 		glTexImage2D(type, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, pixelArray);
 		//glActiveTexture(GL_TEXTURE0);
-		glEnable(GL_DEPTH_TEST);
 	}
 	else if (tr->type == "cube")
 	{
@@ -122,7 +121,7 @@ void Texture::Load()
 		delete[] buff;
 
 	}
-
+	glEnable(GL_DEPTH_TEST);
 	glBindTexture(type, 0);
 	delete[] pixelArray;
 }

@@ -34,6 +34,14 @@
 				<vs>skyboxShader.vs</vs>
 				<fs>skyboxShader.fs</fs>
 			</shader>
+			<shader id="5">
+				<vs>totalReflexionShader.vs</vs>
+				<fs>totalReflexionShader.fs</fs>
+			</shader>
+			<shader id="6">
+				<vs>textureReflexionShader.vs</vs>
+				<fs>textureReflexionShader.fs</fs>
+			</shader>
 		</folder>
 
 	</shaders>

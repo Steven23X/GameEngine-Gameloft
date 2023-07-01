@@ -50,6 +50,7 @@ int Shader::Load()
 	//finding location of uniforms / attributes
 	positionAttribute = glGetAttribLocation(sId, "a_posL");
 	colorAttribute = glGetAttribLocation(sId, "a_color");
+	normAttribute = glGetAttribLocation(sId, "a_norm");
 
 	uvAttribute = glGetAttribLocation(sId, "a_uv");
 	uv2Attribute = glGetAttribLocation(sId, "a_uv2");
@@ -66,6 +67,13 @@ int Shader::Load()
 	textureUniform[4] = glGetUniformLocation(sId, "u_textureuniform4");
 
 	textureCubeUniform = glGetUniformLocation(sId, "u_cubetextureuniform");
+
+	camerapositionUniform = glGetUniformLocation(sId, "u_cameraposuniform");
+
+	smallradiusUniform = glGetUniformLocation(sId, "u_sradius");
+	bigradiusUniform = glGetUniformLocation(sId, "u_bradius");
+	fogcolorUniform = glGetUniformLocation(sId, "u_fogcolor");
+
 	return 0;
 }
 
@@ -98,6 +106,11 @@ GLint Shader::GetPositionAttribute() const
 GLint Shader::GetColorAttribute() const
 {
 	return colorAttribute;
+}
+
+GLint Shader::GetNormAttribute() const
+{
+	return normAttribute;
 }
 
 GLint Shader::GetUvAttribute() const
@@ -142,4 +155,24 @@ GLint Shader::GetTextureUniform(int index) const
 GLint Shader::GetTextureCubeUniform() const
 {
 	return textureCubeUniform;
+}
+
+GLint Shader::GetCamerapositionUniform() const
+{
+	return camerapositionUniform;
+}
+
+GLint Shader::GetSmallradiusUniform() const
+{
+	return smallradiusUniform;
+}
+
+GLint Shader::GetBigradiusUniform() const
+{
+	return bigradiusUniform;
+}
+
+GLint Shader::GetFogcolorUniform() const
+{
+	return fogcolorUniform;
 }

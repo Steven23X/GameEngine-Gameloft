@@ -9,7 +9,7 @@
 
 SceneObject::SceneObject(unsigned idSo, const Vector3& position, const Vector3& rotation, const Vector3& scale,
                          Model* model, Shader* shader, const std::vector<Texture*>& textures, const bool depthTest,
-                         bool isWired, bool isFollowingCamera, Vector3 followingCamera)
+                         bool isWired, bool isFollowingCamera, Vector3 followingCamera,FogResource fog)
 	: idSo(idSo),
 	  position(position),
 	  rotation(rotation),
@@ -20,7 +20,8 @@ SceneObject::SceneObject(unsigned idSo, const Vector3& position, const Vector3& 
 	  followingCamera(followingCamera),
 	  depthTest(depthTest),
 	  isWired(isWired),
-	  isFollowingCamera(isFollowingCamera)
+	  isFollowingCamera(isFollowingCamera),
+      fog(fog)
 {
 	offset = Vector3(position.x,position.y,position.z);
 }
@@ -43,6 +44,8 @@ Matrix SceneObject::GetModelMatrix() const
 
 void SceneObject::Draw() const
 {
+	int err = glGetError();
+
 	glUseProgram(shader->GetSId());
 
 	glBindBuffer(GL_ARRAY_BUFFER, model->GetVboId());
@@ -50,7 +53,6 @@ void SceneObject::Draw() const
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, model->GetWiredIboId());
 	else
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, model->GetIboId());
-
 
 	for (unsigned i = 0; i < textures.size(); i++)
 	{
@@ -66,17 +68,22 @@ void SceneObject::Draw() const
 			glBindTexture(GL_TEXTURE_CUBE_MAP, textures[i]->GetTId());
 		}
 
-		if (shader->GetTextureUniform(i) != -1)
+		if (textures[i]->GetTr()->type == "2d")
 		{
-			glUniform1i(shader->GetTextureUniform(i), i);
+			if (shader->GetTextureUniform(i) != -1)
+			{
+				glUniform1i(shader->GetTextureUniform(i), i);
+			}
 		}
-
-		if (shader->GetTextureCubeUniform() != -1)
+		if (textures[i]->GetTr()->type == "cube")
 		{
-			glUniform1i(shader->GetTextureCubeUniform(), i);
+			if (shader->GetTextureCubeUniform() != -1)
+			{
+				glUniform1i(shader->GetTextureCubeUniform(), i);
+			}
 		}
 	}
-
+	err = glGetError();
 
 	if (shader->GetPositionAttribute() != -1)
 	{
@@ -89,6 +96,13 @@ void SceneObject::Draw() const
 		glEnableVertexAttribArray(shader->GetColorAttribute());
 		glVertexAttribPointer(shader->GetColorAttribute(), 3, GL_FLOAT, GL_FALSE, sizeof(Vertex),
 		                      (void*)sizeof(Vector3));
+	}
+
+	if (shader->GetNormAttribute() != -1)
+	{
+		glEnableVertexAttribArray(shader->GetNormAttribute());
+		glVertexAttribPointer(shader->GetNormAttribute(), 3, GL_FLOAT, GL_FALSE, sizeof(Vertex),
+			(void*)(2 * sizeof(Vector3)));
 	}
 
 	if (shader->GetUvAttribute() != -1)
@@ -141,15 +155,43 @@ void SceneObject::Draw() const
 			height[2] = ((Terrain*)this)->GetHeights().z;
 			glUniform3f(shader->GetHeightUniform(), height[0], height[1], height[2]);
 		}
-	}
 
+		if (shader->GetCamerapositionUniform() != -1)
+		{
+			Vector3 position = SceneManager::GetInstance()->GetActiveCamera()->GetPosition();
+			
+			glUniform3f(shader->GetCamerapositionUniform(), position.x, position.y, position.z);
+		}
+
+		if (shader->GetSmallradiusUniform() != -1)
+		{
+			glUniform1f(shader->GetSmallradiusUniform(), fog.smallRadius);
+		}
+
+		if (shader->GetBigradiusUniform() != -1)
+		{
+			glUniform1f(shader->GetBigradiusUniform(), fog.bigRadius);
+		}
+
+		if (shader->GetFogcolorUniform() != -1)
+		{
+			glUniform3f(shader->GetFogcolorUniform(), fog.r, fog.g, fog.b);
+		}
+	}
+	err = glGetError();
 	if (isWired)
 		glDrawElements(GL_LINES, model->GetNrIndiciWired(), GL_UNSIGNED_SHORT, 0);
 	else
 		glDrawElements(GL_TRIANGLES, model->GetNrIndex(), GL_UNSIGNED_SHORT, 0);
+	err = glGetError();
 
 	if (textures.empty() == false)
+	{
 		glBindTexture(GL_TEXTURE_2D, 0);
+		//glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
+	}
+	err = glGetError();
+
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
