@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 14.0.25123.00
 # Visual Studio 2015
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NewTrainingFramework", "NewTrainingFramework\NewTrainingFramework.vcxproj", "{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameEngine", "GameEngine\GameEngine.vcxproj", "{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Utilities", "Utilities\Utilities.vcxproj", "{0D44529E-F7DD-4454-8EAD-9AFD857F53B4}"
 EndProject

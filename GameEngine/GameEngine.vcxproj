@@ -22,6 +22,7 @@
     <ProjectGuid>{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}</ProjectGuid>
     <RootNamespace>NewTrainingFramework</RootNamespace>
     <Keyword>Win32Proj</Keyword>
+    <ProjectName>GameEngine</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release-ATI|Win32'" Label="Configuration">
@@ -165,7 +166,7 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Fire.cpp" />
     <ClCompile Include="Model.cpp" />
-    <ClCompile Include="NewTrainingFramework.cpp" />
+    <ClCompile Include="GameEngineMain.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SceneObject.cpp" />
