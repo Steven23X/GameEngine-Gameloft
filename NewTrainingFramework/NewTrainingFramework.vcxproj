@@ -181,6 +181,7 @@
     <ClCompile Include="Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AmbientalLightResource.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CameraResource.h" />
     <ClInclude Include="ControlResource.h" />
@@ -188,6 +189,7 @@
     <ClInclude Include="FogResource.h" />
     <ClInclude Include="FollowingCameraResource.h" />
     <ClInclude Include="Globals.h" />
+    <ClInclude Include="LightResource.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="ModelResource.h" />
     <ClInclude Include="ObjectResource.h" />
@@ -213,6 +215,8 @@
     <None Include="..\Resources\Models\Terrain.nfg" />
     <None Include="..\Resources\Shaders\fireShader.fs" />
     <None Include="..\Resources\Shaders\fireShader.vs" />
+    <None Include="..\Resources\Shaders\lightShader.fs" />
+    <None Include="..\Resources\Shaders\lightShader.vs" />
     <None Include="..\Resources\Shaders\modelShader.fs" />
     <None Include="..\Resources\Shaders\modelShader.vs" />
     <None Include="..\Resources\Shaders\modelShaderWired.fs" />

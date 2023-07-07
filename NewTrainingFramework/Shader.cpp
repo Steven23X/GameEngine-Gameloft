@@ -48,18 +48,23 @@ int Shader::Load()
 	sId = esLoadProgram(vertexShader, fragmentShader);
 
 	//finding location of uniforms / attributes
+
+	//attributes
 	positionAttribute = glGetAttribLocation(sId, "a_posL");
 	colorAttribute = glGetAttribLocation(sId, "a_color");
 	normAttribute = glGetAttribLocation(sId, "a_norm");
-
 	uvAttribute = glGetAttribLocation(sId, "a_uv");
 	uv2Attribute = glGetAttribLocation(sId, "a_uv2");
 
+	//terrain height
 	heightUniform = glGetUniformLocation(sId, "u_height");
+
+	//MVP
 	modelmatrixUniform = glGetUniformLocation(sId, "u_modelmatrix");
 	viewmatrixUniform = glGetUniformLocation(sId, "u_viewmatrix");
 	projectionmatrixUniform = glGetUniformLocation(sId, "u_projectionmatrix");
 
+	//textures
 	textureUniform[0] = glGetUniformLocation(sId, "u_textureuniform0");
 	textureUniform[1] = glGetUniformLocation(sId, "u_textureuniform1");
 	textureUniform[2] = glGetUniformLocation(sId, "u_textureuniform2");
@@ -68,14 +73,27 @@ int Shader::Load()
 
 	textureCubeUniform = glGetUniformLocation(sId, "u_cubetextureuniform");
 
+	//camera pos
 	camerapositionUniform = glGetUniformLocation(sId, "u_cameraposuniform");
 
+	// fog
 	smallradiusUniform = glGetUniformLocation(sId, "u_sradius");
 	bigradiusUniform = glGetUniformLocation(sId, "u_bradius");
 	fogcolorUniform = glGetUniformLocation(sId, "u_fogcolor");
 
+	// fire
 	timeUniform = glGetUniformLocation(sId, "u_time");
 	dispMaxUniform = glGetUniformLocation(sId, "u_dispmax");
+
+	//ambiental light
+	ambientalColorUniform = glGetUniformLocation(sId, "u_ambcolor");
+	ambientalRatioUniform = glGetUniformLocation(sId, "u_ambratio");
+
+	// light
+	specPowerUniform = glGetUniformLocation(sId, "u_specpower");
+	diffuseColorUniform = glGetUniformLocation(sId, "u_diffusecolor");
+	specularColorUniform = glGetUniformLocation(sId, "u_specularcolor");
+	directionUniform = glGetUniformLocation(sId, "u_direction");
 	return 0;
 }
 
@@ -187,4 +205,34 @@ GLint Shader::GetTimeUniform() const
 GLint Shader::GetDispMaxUniform() const
 {
 	return dispMaxUniform;
+}
+
+GLint Shader::GetAmbientalColorUniform() const
+{
+	return ambientalColorUniform;
+}
+
+GLint Shader::GetAmbientalRatioUniform() const
+{
+	return ambientalRatioUniform;
+}
+
+GLint Shader::GetSpecPowerUniform() const
+{
+	return specPowerUniform;
+}
+
+GLint Shader::GetDiffuseColorUniform() const
+{
+	return diffuseColorUniform;
+}
+
+GLint Shader::GetSpecularColorUniform() const
+{
+	return specularColorUniform;
+}
+
+GLint Shader::GetDirectionUniform() const
+{
+	return directionUniform;
 }

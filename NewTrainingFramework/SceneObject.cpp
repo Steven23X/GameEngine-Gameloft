@@ -10,7 +10,7 @@
 
 SceneObject::SceneObject(unsigned idSo, const Vector3& position, const Vector3& rotation, const Vector3& scale,
                          Model* model, Shader* shader, const std::vector<Texture*>& textures, const bool depthTest,
-                         bool isWired, bool isFollowingCamera, Vector3 followingCamera,FogResource fog)
+                         bool isWired, bool isFollowingCamera, Vector3 followingCamera,FogResource fog,AmbientalLightResource alr)
 	: idSo(idSo),
 	  position(position),
 	  rotation(rotation),
@@ -22,7 +22,8 @@ SceneObject::SceneObject(unsigned idSo, const Vector3& position, const Vector3& 
 	  depthTest(depthTest),
 	  isWired(isWired),
 	  isFollowingCamera(isFollowingCamera),
-      fog(fog)
+      fog(fog),
+      alr(alr)
 {
 	offset = Vector3(position.x,position.y,position.z);
 }
@@ -188,6 +189,39 @@ void SceneObject::Draw() const
 		{
 			const GLfloat dispMax = ((Fire*)this)->GetDispMax();
 			glUniform1f(shader->GetDispMaxUniform(), dispMax);
+		}
+
+		if(shader->GetAmbientalColorUniform() != -1)
+		{
+			glUniform3f(shader->GetAmbientalColorUniform(), alr.r, alr.g, alr.b);
+		}
+
+		if (shader->GetAmbientalRatioUniform() != -1)
+		{
+			glUniform1f(shader->GetAmbientalRatioUniform(), alr.ratio);
+		}
+
+		if (shader->GetSpecPowerUniform() != -1)
+		{
+			glUniform1f(shader->GetSpecPowerUniform(), SceneManager::GetInstance()->GetLr().specPower);
+		}
+
+		if (shader->GetSpecularColorUniform() != -1)
+		{
+			LightResource lr = SceneManager::GetInstance()->GetLr();
+			glUniform3f(shader->GetSpecularColorUniform(),lr.specularColorR,lr.specularColorG,lr.specularColorB);
+		}
+
+		if (shader->GetDiffuseColorUniform() != -1)
+		{
+			LightResource lr = SceneManager::GetInstance()->GetLr();
+			glUniform3f(shader->GetDiffuseColorUniform(), lr.diffuseColorR, lr.diffuseColorG, lr.diffuseColorB);
+		}
+
+		if (shader->GetDirectionUniform() != -1)
+		{
+			LightResource lr = SceneManager::GetInstance()->GetLr();
+			glUniform3f(shader->GetDirectionUniform(), lr.directionX, lr.directionY, lr.directionZ);
 		}
 	}
 	if (isWired)

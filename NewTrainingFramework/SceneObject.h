@@ -7,6 +7,7 @@
 #include "Texture.h"
 #include <vector>
 
+#include "AmbientalLightResource.h"
 #include "FogResource.h"
 
 class SceneObject
@@ -31,9 +32,10 @@ protected:
 	bool isFollowingCamera;
 
 	FogResource fog;
+	AmbientalLightResource alr;
 public:
 	// Constructor
-	SceneObject(unsigned idSo, const Vector3& position, const Vector3& rotation, const Vector3& scale, Model* model, Shader* shader, const std::vector<Texture*>& textures, bool depthTest, bool isWired,bool isFollowingCamera,Vector3 followingCamera,FogResource fog);
+	SceneObject(unsigned idSo, const Vector3& position, const Vector3& rotation, const Vector3& scale, Model* model, Shader* shader, const std::vector<Texture*>& textures, bool depthTest, bool isWired,bool isFollowingCamera,Vector3 followingCamera,FogResource fog,AmbientalLightResource alr);
 
 	// Getters
 	Matrix GetModelMatrix() const;

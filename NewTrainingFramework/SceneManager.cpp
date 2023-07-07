@@ -126,10 +126,17 @@ void SceneManager::Init()
 	//retrieving fog
 	xml_node<>* fog = sceneManager->first_node("fog");
 	InitFog(fog);
+
+	// retrieving ambiental light
+	xml_node<>* ambientalLight = sceneManager->first_node("ambientalLight");
+	InitAmbientalLight(ambientalLight);
+
+	// retrieving lights
+	xml_node<>* light = sceneManager->first_node("light");
+	InitLight(light);
 	// retrieving controls
 	xml_node<>* controls = sceneManager->first_node("controls");
 	InitControls(controls);
-
 
 	// retrieving cameras
 	xml_node<>* cameras = sceneManager->first_node("cameras");
@@ -160,6 +167,54 @@ void SceneManager::InitFog(xml_node<>* fog)
 	const xml_node<>* b = color->first_node("b");
 	fg.b = std::stof(b->value());
 
+}
+
+void SceneManager::InitAmbientalLight(xml_node<>* ambientalLight)
+{
+	xml_node<>* ratio = ambientalLight->first_node("ratio");
+	alr.ratio = std::stof(ratio->value());
+
+	xml_node<>* color = ambientalLight->first_node("color");
+
+	const xml_node<>* r = color->first_node("r");
+	alr.r = std::stof(r->value());
+	const xml_node<>* g = color->first_node("g");
+	alr.g = std::stof(g->value());
+	const xml_node<>* b = color->first_node("b");
+	alr.b = std::stof(b->value());
+}
+
+void SceneManager::InitLight(xml_node<>* light)
+{
+	xml_node<>* direction = light->first_node("direction");
+
+	const xml_node<>* x = direction->first_node("x");
+	lr.directionX = std::stof(x->value());
+	const xml_node<>* y = direction->first_node("y");
+	lr.directionY = std::stof(y->value());
+	const xml_node<>* z = direction->first_node("z");
+	lr.directionZ = std::stof(z->value());
+
+	xml_node<>* diffuse = light->first_node("diffuseColor");
+
+	const xml_node<>* rDiffuse = diffuse->first_node("r");
+	lr.diffuseColorR = std::stof(rDiffuse->value());
+	const xml_node<>* gDiffuse = diffuse->first_node("g");
+	lr.diffuseColorG = std::stof(gDiffuse->value());
+	const xml_node<>* bDiffuse = diffuse->first_node("b");
+	lr.diffuseColorB = std::stof(bDiffuse->value());
+
+	xml_node<>* specular = light->first_node("specularColor");
+
+	const xml_node<>* rSpecular = specular->first_node("r");
+	lr.specularColorR = std::stof(rDiffuse->value());
+	const xml_node<>* gSpecular = specular->first_node("g");
+	lr.specularColorG = std::stof(gDiffuse->value());
+	const xml_node<>* bSpecular = specular->first_node("b");
+	lr.specularColorB = std::stof(bDiffuse->value());
+
+	xml_node<>* specPower = light->first_node("specPower");
+	lr.specPower = std::stof(specPower->value());
 }
 
 void SceneManager::InitControls(xml_node<>* controls)
@@ -431,24 +486,24 @@ void SceneManager::InitObjects(xml_node<>* objects)
 		SceneObject* newSceneObject;
 		if (objectResource.type == "normal")
 			newSceneObject = new SceneObject(idKey, v3Position, v3Rotation, v3Scale, pModel, pShader, pTextures, true,
-			                                 objectResource.isWired,fcr.isFollowing,followingCamera,fg);
+			                                 objectResource.isWired,fcr.isFollowing,followingCamera,fg,alr);
 		else if (objectResource.type == "terrain")
 		{
 			newSceneObject = new Terrain(idKey, v3Position, v3Rotation, v3Scale, pModel, pShader, pTextures, true,
 				objectResource.isWired, fcr.isFollowing, followingCamera, terrainResource.cellNumber,
 				terrainResource.dimCell, terrainResource.offsetY,
 				Vector3(terrainResource.heightR, terrainResource.heightG,
-					terrainResource.heightB), activeCamera->GetPosition(),fg);
+					terrainResource.heightB), activeCamera->GetPosition(),fg,alr);
 		}
 		else if(objectResource.type =="skybox")
 		{
 			newSceneObject = new SkyBox(idKey, v3Position, v3Rotation, v3Scale, pModel, pShader, pTextures, true,
-				objectResource.isWired,fcr.isFollowing, followingCamera,fg);
+				objectResource.isWired,fcr.isFollowing, followingCamera,fg,alr);
 		}
 		else if(objectResource.type == "fire")
 		{
 			newSceneObject = new Fire(idKey, v3Position, v3Rotation, v3Scale, pModel, pShader, pTextures, true,
-				objectResource.isWired, fcr.isFollowing, followingCamera, fg,dispMax);
+				objectResource.isWired, fcr.isFollowing, followingCamera, fg,dispMax,alr);
 		}
 		sceneObjects.push_back(newSceneObject);
 	}
@@ -489,12 +544,6 @@ void SceneManager::FreeResources()
 {
 	if (spInstance != nullptr)
 	{
-		// Delete ControlResources
-		/*for (const ControlResource* controlResource : cr) {
-			delete controlResource;
-		}
-		cr.clear();
-		*/
 		// Delete Cameras
 		for (const auto& pair : camerasMap)
 		{
@@ -517,6 +566,11 @@ void SceneManager::FreeResources()
 Camera* SceneManager::GetActiveCamera() const
 {
 	return activeCamera;
+}
+
+LightResource SceneManager::GetLr() const
+{
+	return lr;
 }
 
 SceneManager::~SceneManager()

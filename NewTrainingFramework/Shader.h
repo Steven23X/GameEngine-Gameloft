@@ -34,6 +34,15 @@ class Shader {
 
 	GLint timeUniform;
 	GLint dispMaxUniform;
+
+	GLint ambientalColorUniform;
+	GLint ambientalRatioUniform;
+
+	GLint specPowerUniform;
+	GLint diffuseColorUniform;
+	GLint specularColorUniform;
+	GLint directionUniform;
+
 public:
 
 	// Constructors
@@ -65,6 +74,12 @@ public:
 	GLint GetFogcolorUniform() const;
 	GLint GetTimeUniform() const;
 	GLint GetDispMaxUniform() const;
+	GLint GetAmbientalColorUniform() const;
+	GLint GetAmbientalRatioUniform() const;
+	GLint GetSpecPowerUniform() const;
+	GLint GetDiffuseColorUniform() const;
+	GLint GetSpecularColorUniform() const;
+	GLint GetDirectionUniform() const;
 	// Destructor
 	~Shader();
 };

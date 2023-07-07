@@ -4,9 +4,9 @@
 
 Fire::Fire(unsigned idSo, const Vector3& position, const Vector3& rotation, const Vector3& scale, Model* model,
 	Shader* shader, const std::vector<Texture*>& textures, bool depthTest, bool isWired, bool isFollowingCamera,
-	const Vector3& followingCamera, const FogResource& fog, float dispMax) : SceneObject(
+	const Vector3& followingCamera, const FogResource& fog, float dispMax,const AmbientalLightResource& alr) : SceneObject(
 		idSo, position, rotation, scale, model, shader, textures, depthTest, isWired, isFollowingCamera,
-		followingCamera, fog),
+		followingCamera, fog,alr),
 	dispMax(dispMax)
 {}
 

@@ -13,7 +13,7 @@ public:
 
 	Fire(unsigned idSo, const Vector3& position, const Vector3& rotation, const Vector3& scale, Model* model,
 	     Shader* shader, const std::vector<Texture*>& textures, bool depthTest, bool isWired, bool isFollowingCamera,
-	     const Vector3& followingCamera, const FogResource& fog, float dispMax);
+	     const Vector3& followingCamera, const FogResource& fog, float dispMax,const AmbientalLightResource& alr);
 
 	~Fire();
 

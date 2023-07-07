@@ -18,7 +18,7 @@ public:
 
 	Terrain(unsigned idSo, const Vector3& position, const Vector3& rotation, const Vector3& scale, Model* model,
 		Shader* shader, const std::vector<Texture*>& textures, bool depthTest, bool isWired,bool isFollowingCamera,Vector3 followingCamera, int nrCells,
-		float dimCells, float offsetY,Vector3 heights,Vector3 cameraPosition,FogResource fog);
+		float dimCells, float offsetY,Vector3 heights,Vector3 cameraPosition,FogResource fog,AmbientalLightResource alr);
 
 	~Terrain();
 

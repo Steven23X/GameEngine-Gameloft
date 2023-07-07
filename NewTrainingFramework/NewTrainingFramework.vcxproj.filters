@@ -170,6 +170,12 @@
     <ClInclude Include="Fire.h">
       <Filter>Header Files\SceneManager\Objects</Filter>
     </ClInclude>
+    <ClInclude Include="AmbientalLightResource.h">
+      <Filter>Header Files\SceneManager\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="LightResource.h">
+      <Filter>Header Files\SceneManager\Resources</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Resources\Shaders\modelShader.fs">
@@ -221,6 +227,12 @@
       <Filter>Resources\Shaders</Filter>
     </None>
     <None Include="..\Resources\Shaders\fireShader.vs">
+      <Filter>Resources\Shaders</Filter>
+    </None>
+    <None Include="..\Resources\Shaders\lightShader.fs">
+      <Filter>Resources\Shaders</Filter>
+    </None>
+    <None Include="..\Resources\Shaders\lightShader.vs">
       <Filter>Resources\Shaders</Filter>
     </None>
   </ItemGroup>

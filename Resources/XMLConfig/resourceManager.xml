@@ -52,6 +52,10 @@
 				<vs>fireShader.vs</vs>
 				<fs>fireShader.fs</fs>
 			</shader>
+			<shader id="8">
+				<vs>lightShader.vs</vs>
+				<fs>lightShader.fs</fs>
+			</shader>
 		</folder>
 
 	</shaders>
