@@ -1,6 +1,6 @@
 # Game Engine - Gameloft
 
-![](ReadMeResources/result.png)
+![](ReadMeResources/result.PNG)
 
 --- 
 
